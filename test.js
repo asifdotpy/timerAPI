@@ -9,7 +9,7 @@ app.listen(port);
 
 // pizzatime example
 var Timer = new timer();
-var countdownTime = 25 * 60; // define time as seconds eg: for five minutes 5*60
+var countdownTime = 50 * 60; // define time as seconds eg: for five minutes 5*60
 
 // timer starts as a global variable
 Timer.start(countdownTime);
@@ -22,8 +22,14 @@ app.get("/currentTime", (req, res) => {
   res.send(`${Timer.getDuration()}`);
 });
 
+// start will triggered the timer.
+app.get("/start", (req, res) => {
+  Timer.start(countdownTime);
+  res.send("Timer starts")
+});
+
 // pause will pause the timer and send the
-// currentTime all the time.
+// currentTime.
 app.get("/pause", (req, res) => {
   Timer.pause();
   res.send("Timer paused");
