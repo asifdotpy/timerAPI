@@ -13,11 +13,16 @@ var countdownTime = 50 * 60; // define time as seconds eg: for five minutes 5*60
 
 // timer starts as a global variable
 Timer.start(countdownTime);
-
+console.log("Timer starts on port: " + port);
 // The usual way to call this api is to make a
 // http GET request //TODO: not all method will
 // be GET request. It should be converted into
 // POST request ASAP.
+// Configure root url
+app.get("/", (req, res) => {
+	res.send("Timer is working properly.");
+});
+
 app.get("/currentTime", (req, res) => {
   res.send(`${Timer.getDuration()}`);
 });
